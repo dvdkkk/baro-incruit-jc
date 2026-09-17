@@ -1,0 +1,8 @@
+{
+  "name": "Remix baro-incruit(공식사이트)",
+  "description": "Imported from GitHub: dvdkkk/baro-incruit",
+  "requestFramePermissions": [],
+  "majorCapabilities": [
+    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
+  ]
+}

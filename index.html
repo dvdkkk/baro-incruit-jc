@@ -227,6 +227,10 @@
       -webkit-font-smoothing: antialiased;
       -moz-osx-font-smoothing: grayscale;
       text-rendering: optimizeLegibility;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      text-decoration: none;
     }
 
     .header-cta-btn::before {
@@ -1431,6 +1435,10 @@
       border-radius: 10px;
       text-align: center;
       transition: all 0.2s;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-decoration: none;
     }
 
     .btn-pricing-consult:hover {
@@ -1543,105 +1551,153 @@
       display: block;
     }
 
-    /* ===== Sticky Bottom Bar (S10) ===== */
-    .sticky-bottom-bar {
+    /* ===== Floating Circular Consultation Button (우측 하단 원형 상담신청 플로팅 버튼) ===== */
+    .floating-consult-wrap {
       position: fixed;
-      bottom: 0;
-      left: 0;
-      width: 100%;
-      background: rgba(15, 23, 42, 0.95);
-      backdrop-filter: blur(10px);
-      border-top: 1px solid rgba(255, 255, 255, 0.15);
-      z-index: 990;
-      padding: 14px 0;
-      box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.15);
-      transform: translateY(100%);
-      opacity: 0;
-      transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+      right: 28px;
+      bottom: 32px;
+      z-index: 9999;
     }
 
-    .sticky-bottom-bar.visible {
-      transform: translateY(0);
-      opacity: 1;
-    }
-
-    .sticky-inner {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 20px;
-    }
-
-    .sticky-left {
-      display: flex;
-      align-items: center;
-      gap: 16px;
-    }
-
-    .sticky-brand-label {
-      font-size: 17px;
-      font-weight: 800;
-      color: #ffffff;
-      font-style: normal;
-    }
-
-    .sticky-chips-row {
-      display: flex;
-      align-items: center;
-      gap: 8px;
-    }
-
-    .sticky-chip {
-      background: rgba(255, 255, 255, 0.1);
-      border: 1px solid rgba(255, 255, 255, 0.15);
-      color: #cbd5e1;
-      font-size: 12px;
-      font-weight: 500;
-      padding: 3px 10px;
-      border-radius: 20px;
-    }
-
-    .sticky-right {
-      display: flex;
-      align-items: center;
-      gap: 20px;
-    }
-
-    .sticky-price {
-      font-size: 22px;
-      font-weight: 800;
-      color: #38bdf8;
-    }
-
-    .sticky-buy-btn {
-      background: var(--primary-blue);
-      color: #ffffff;
-      font-size: 14px;
-      font-weight: 700;
-      padding: 10px 24px;
-      border-radius: 6px;
-      transition: all 0.2s;
+    .floating-consult-btn {
       position: relative;
-      animation: pulseAttention 3s infinite ease-in-out;
-      -webkit-font-smoothing: antialiased;
-      -moz-osx-font-smoothing: grayscale;
-      text-rendering: optimizeLegibility;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      width: 76px;
+      height: 76px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #0066ff 0%, #004edb 100%);
+      color: #ffffff;
+      text-decoration: none;
+      box-shadow: 0 8px 24px rgba(0, 102, 255, 0.4), 0 2px 8px rgba(0, 0, 0, 0.12);
+      transition: transform 0.25s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.25s ease, background 0.2s ease;
+      cursor: pointer;
+      user-select: none;
+      -webkit-tap-highlight-color: transparent;
+      animation: fabPulse 3s infinite ease-in-out;
     }
 
-    .sticky-buy-btn::before {
-      content: '';
+    /* 7초 주기 은은하게 퍼지는 핑(Ping) 링 */
+    .fab-ping-ring {
       position: absolute;
-      inset: -4px;
-      border-radius: inherit;
-      border: 2px solid var(--primary-blue);
+      inset: -5px;
+      border-radius: 50%;
+      border: 2px solid #0066ff;
       opacity: 0;
       pointer-events: none;
-      animation: pingRing7s 7s infinite cubic-bezier(0, 0, 0.2, 1);
+      animation: fabPingRing 7s infinite cubic-bezier(0, 0, 0.2, 1);
     }
 
-    .sticky-buy-btn:hover {
-      background: var(--primary-dark-blue);
-      transform: translateY(-1px);
+    .fab-ping-ring-delayed {
+      animation: fabPingRingDelayed 7s infinite cubic-bezier(0, 0, 0.2, 1);
+      animation-delay: 0.35s;
+    }
+
+    .fab-content {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 3px;
+      position: relative;
+      z-index: 2;
+    }
+
+    .fab-icon {
+      width: 22px;
+      height: 22px;
+      filter: drop-shadow(0 1px 2px rgba(0, 0, 0, 0.2));
+      transition: transform 0.2s ease;
+    }
+
+    .fab-label {
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: -0.3px;
+      line-height: 1;
+      white-space: nowrap;
+      text-shadow: 0 1px 2px rgba(0, 0, 0, 0.25);
+    }
+
+    /* Hover & Active / Touch feedback */
+    .floating-consult-btn:hover {
+      transform: scale(1.08) translateY(-2px);
+      box-shadow: 0 14px 32px rgba(0, 102, 255, 0.55), 0 4px 12px rgba(0, 0, 0, 0.15);
+      background: linear-gradient(135deg, #005ce6 0%, #0043c2 100%);
+    }
+
+    .floating-consult-btn:hover .fab-icon {
+      transform: scale(1.12);
+    }
+
+    .floating-consult-btn:active {
+      transform: scale(0.94);
+      box-shadow: 0 4px 14px rgba(0, 102, 255, 0.4);
+    }
+
+    /* Pulse 펄스 지속 애니메이션 */
+    @keyframes fabPulse {
+      0%, 100% {
+        box-shadow: 0 8px 24px rgba(0, 102, 255, 0.38), 0 2px 6px rgba(0, 0, 0, 0.12), 0 0 0 0 rgba(0, 102, 255, 0.45);
+      }
+      50% {
+        transform: scale(1.04);
+        box-shadow: 0 12px 28px rgba(0, 102, 255, 0.5), 0 4px 10px rgba(0, 0, 0, 0.15), 0 0 0 9px rgba(0, 102, 255, 0);
+      }
+    }
+
+    /* 7초 단위 Ping 이펙트 링 애니메이션 */
+    @keyframes fabPingRing {
+      0% {
+        transform: scale(1);
+        opacity: 0.85;
+      }
+      22% {
+        transform: scale(1.38);
+        opacity: 0;
+      }
+      100% {
+        transform: scale(1);
+        opacity: 0;
+      }
+    }
+
+    @keyframes fabPingRingDelayed {
+      0%, 2% {
+        transform: scale(1);
+        opacity: 0.65;
+      }
+      25% {
+        transform: scale(1.52);
+        opacity: 0;
+      }
+      100% {
+        transform: scale(1);
+        opacity: 0;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .floating-consult-wrap {
+        right: 18px;
+        bottom: 22px;
+      }
+      .floating-consult-btn {
+        width: 64px;
+        height: 64px;
+      }
+      .fab-icon {
+        width: 19px;
+        height: 19px;
+      }
+      .fab-label {
+        font-size: 11.5px;
+      }
+      .fab-ping-ring {
+        inset: -4px;
+      }
     }
 
     /* ===== Footer (Reference Image Layout with Blue Contact Box) ===== */
@@ -1694,19 +1750,18 @@
       border-radius: 12px;
       text-decoration: none;
       display: block;
+      cursor: pointer;
+      transition: background-color 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
     }
 
-    @media (min-width: 769px) {
-      .footer-right-blue-box {
-        pointer-events: none;
-        cursor: default;
-      }
+    .footer-right-blue-box:hover {
+      background: var(--primary-dark-blue);
+      transform: translateY(-2px);
+      box-shadow: 0 8px 20px rgba(0, 102, 255, 0.28);
     }
 
     @media (max-width: 768px) {
       .footer-right-blue-box {
-        pointer-events: auto;
-        cursor: pointer;
         -webkit-tap-highlight-color: rgba(255, 255, 255, 0.2);
         transition: transform 0.15s ease, opacity 0.15s ease;
       }
@@ -2041,7 +2096,6 @@
       .pricing-card-top { flex-direction: column; align-items: flex-start; gap: 16px; }
       .pricing-price-col { text-align: left; }
       .pricing-action-row { grid-template-columns: 1fr; }
-      .sticky-chips-row { display: none; }
 	  
 	  .pricing-includes-list{flex-wrap: wrap;}
     }
@@ -2086,7 +2140,7 @@
         </nav>
 
         <div class="header-actions">
-          <button type="button" class="header-cta-btn" onclick="openConsultModal()">무료 상담 신청</button>
+          <a href="https://naver.me/5B0Ajmt8" target="_blank" rel="noopener noreferrer" class="header-cta-btn" id="headerCtaBtn">무료 상담 신청</a>
           <button type="button" class="mobile-menu-btn" onclick="toggleMobileNav()" aria-label="메뉴 토글">☰</button>
         </div>
       </div>
@@ -2146,12 +2200,9 @@
         </div>
 
         <div class="hero-cta-group">
-          <button type="button" class="btn-hero-primary" onclick="openConsultModal()">
+          <a href="https://naver.me/5B0Ajmt8" target="_blank" rel="noopener noreferrer" class="btn-hero-primary" id="heroConsultBtn">
             상담 신청하기
-          </button>
-          <button type="button" class="btn-hero-secondary" onclick="FastTrackBuyStart()">
-            결제하기
-          </button>
+          </a>
         </div>
       </div>
     </div>
@@ -2570,9 +2621,9 @@
 
 
           <div class="pricing-action-row">
-            <button type="button" class="btn-pricing-consult" onclick="openConsultModal()">
+            <a href="https://naver.me/5B0Ajmt8" target="_blank" rel="noopener noreferrer" class="btn-pricing-consult" id="pricingConsultBtn">
               상담하기
-            </button>
+            </a>
             <button type="button" class="btn-pricing-buy" onclick="FastTrackBuyStart()">
               구매하기
             </button>
@@ -2660,24 +2711,26 @@
     </div>
   </section>
 
-  <!-- ===== 8. Sticky Bottom Bar (S10) ===== -->
-  <aside class="sticky-bottom-bar" id="stickyBottomBar">
-    <div class="wrap">
-      <div class="sticky-inner">
-        <div class="sticky-left">
-          <em class="sticky-brand-label">패스트트랙</em>
-          <div class="sticky-chips-row">
-            <span class="sticky-chip">인크루트 모의평가</span>
-            <span class="sticky-chip">모의평가 요약 리포트</span>
-            <span class="sticky-chip">60분 1:1 코칭</span>
-          </div>
-        </div>
-        <div class="sticky-right">
-          <div class="sticky-price">220,000원</div>
-          <button type="button" class="sticky-buy-btn" onclick="FastTrackBuyStart()">구매하기</button>
-        </div>
-      </div>
-    </div>
+  <!-- ===== 우측 하단 원형 상담신청 플로팅 버튼 ===== -->
+  <aside class="floating-consult-wrap" id="floatingConsultWrap">
+    <a
+      href="https://naver.me/5B0Ajmt8"
+      target="_blank"
+      rel="noopener noreferrer"
+      class="floating-consult-btn"
+      id="floatingConsultBtn"
+      aria-label="상담신청 새 창으로 열기"
+      title="상담신청 (새 창 열기)"
+    >
+      <span class="fab-ping-ring" aria-hidden="true"></span>
+      <span class="fab-ping-ring fab-ping-ring-delayed" aria-hidden="true"></span>
+      <span class="fab-content">
+        <svg class="fab-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"></path>
+        </svg>
+        <span class="fab-label">상담신청</span>
+      </span>
+    </a>
   </aside>
 
   <!-- ===== 9. Footer (Reference Image Layout with Blue Contact Box) ===== -->
@@ -2692,7 +2745,7 @@
           </div>
         </div>
 
-        <a href="tel:1800-5027" class="footer-right-blue-box" onclick="if(window.innerWidth > 768){event.preventDefault();}" aria-label="고객센터 1800-5027 전화걸기" title="고객센터 1800-5027">
+        <a href="tel:1800-5027" class="footer-right-blue-box" onclick="handlePhoneCallClick(event)" aria-label="고객센터 1800-5027 상담 및 안내" title="고객센터 1800-5027">
           <div class="footer-box-label">상담 및 안내</div>
           <div class="footer-box-phone">1800-5027</div>
         </a>
@@ -2812,28 +2865,16 @@
       offset: 60,
     });
 
-    // Header scroll background & Sticky bottom bar controller
+    // Header scroll background controller
     window.addEventListener('scroll', function() {
       const header = document.getElementById('siteHeader');
-      const stickyBar = document.getElementById('stickyBottomBar');
       const scrollY = window.pageYOffset || document.documentElement.scrollTop;
-      const docHeight = document.documentElement.scrollHeight;
-      const winHeight = window.innerHeight;
 
       // Header shadow
       if (scrollY > 30) {
         header.classList.add('scrolled');
       } else {
         header.classList.remove('scrolled');
-      }
-
-      // Sticky Bottom Bar visibility
-      // Show when scrolling past hero, hide when reaching near footer
-      const footerOffset = docHeight - winHeight - 200;
-      if (scrollY > 400 && scrollY < footerOffset) {
-        stickyBar.classList.add('visible');
-      } else {
-        stickyBar.classList.remove('visible');
       }
     });
 
@@ -2847,20 +2888,22 @@
       }
     }
 
-    // Modal Control
+    // Modal & Consultation Link Control
     let isConsultSubmitting = false;
 
-    function openConsultModal() {
-      isConsultSubmitting = false;
-      const modal = document.getElementById('consultModal');
-      modal.classList.add('active');
-      const form = document.getElementById('consultForm');
-      if (form) {
-        form.style.display = 'block';
-        const submitBtn = form.querySelector('button[type="submit"]');
-        if (submitBtn) submitBtn.disabled = false;
+    function handlePhoneCallClick(e) {
+      // 모바일 환경 판별 (화면 너비 768px 이하 또는 모바일 브라우저/디바이스)
+      const isMobile = window.innerWidth <= 768 || /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+      if (!isMobile) {
+        if (e && e.preventDefault) e.preventDefault();
+        window.open('https://naver.me/5B0Ajmt8', '_blank', 'noopener,noreferrer');
       }
-      document.getElementById('consultSuccess').style.display = 'none';
+      // 모바일 환경인 경우 tel:1800-5027 기본 동작이 실행되어 통화 다이얼로그 호출
+    }
+
+    function openConsultModal(e) {
+      if (e && e.preventDefault) e.preventDefault();
+      window.open('https://naver.me/5B0Ajmt8', '_blank', 'noopener,noreferrer');
     }
 
     function closeConsultModal() {

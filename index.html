@@ -1421,14 +1421,14 @@
 
     .pricing-action-row {
       display: grid;
-      grid-template-columns: 1fr 1fr;
+      grid-template-columns: 1fr;
       gap: 16px;
     }
 
     .btn-pricing-consult {
-      background: #eff6ff;
-      color: var(--primary-blue);
-      border: 1px solid #bfdbfe;
+      background: var(--primary-blue);
+      color: #ffffff;
+      border: 1px solid var(--primary-blue);
       font-size: 1.1em;
       font-weight: 700;
       padding: 16px 0;
@@ -1439,10 +1439,13 @@
       align-items: center;
       justify-content: center;
       text-decoration: none;
+      box-shadow: 0 4px 12px rgba(0, 102, 255, 0.25);
     }
 
     .btn-pricing-consult:hover {
-      background: #dbeafe;
+      background: var(--primary-dark-blue);
+      box-shadow: 0 6px 16px rgba(0, 102, 255, 0.35);
+      transform: translateY(-2px);
     }
 
     .btn-pricing-buy {
@@ -2624,9 +2627,6 @@
             <a href="https://naver.me/5B0Ajmt8" target="_blank" rel="noopener noreferrer" class="btn-pricing-consult" id="pricingConsultBtn">
               상담하기
             </a>
-            <button type="button" class="btn-pricing-buy" onclick="FastTrackBuyStart()">
-              구매하기
-            </button>
           </div>
         </div>
       </div>
